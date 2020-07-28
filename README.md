@@ -1,5 +1,5 @@
 # Test task
-=
+
 To run the project do the following
 -
 **1. build images**

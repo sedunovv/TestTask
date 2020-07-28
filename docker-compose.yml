@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: postgres
+    image: postgres:12
+    restart: always
+    command: postgres -c 'max_connections=1000'
+    environment:
+      POSTGRES_PASSWORD: interview_pwd
+      POSTGRES_USER: interview_user
+      POSTGRES_DB: interview
+    volumes:
+      - /home/devops/postgres_data:/var/lib/postgresql/data
+      - /home/devops/postgres_scripts:/docker-entrypoint-initdb.d
+      - /home/devops/data/tmp:/tmp
+    shm_size: 2g
+
+  django:
+    build:
+      context: .
+      dockerfile: deploy/backend/Dockerfile-dev
+    volumes:
+    - .:/code
+    depends_on:
+      - db
+    command: python manage.py runserver 0.0.0.0:8080
+    env_file: deploy/backend/variables.env
+    ports:
+    - 8080:8080

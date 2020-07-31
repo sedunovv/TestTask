@@ -36,6 +36,6 @@ services:
     depends_on:
       - db
     command: pytest --create-db
+    env_file: deploy/backend/variables.env
     ports:
       - 8080:8080
-    env_file: deploy/backend/variables.env

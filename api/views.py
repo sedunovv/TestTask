@@ -72,7 +72,7 @@ class AnswerCreateViewSet(viewsets.ModelViewSet):
                                            type_question=self.request.data.get('type_answer', None))
         if not question:
             raise ValidationError('There is no such question')
-        elif self.request.data.get('type_answer') == 0:
+        if self.request.data.get('type_answer') == 0:
             if serializer.is_valid():
                 serializer.save()
             else:
@@ -93,5 +93,3 @@ class AnswerCreateViewSet(viewsets.ModelViewSet):
                 serializer.save()
             else:
                 raise ValidationError('Invalid data in request')
-        else:
-            raise ValidationError('There is no such question')

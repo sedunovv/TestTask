@@ -8,11 +8,15 @@ docker-compose build
 
 **2.a launching containers**
 
-docker-compose up
+docker-compose up django db
 
 **2.b launching containers in the background**
 
-docker-compose up -d
+docker-compose up -d django db
+
+**2.c launch container with tests**
+
+docker-compose run test
 
 **3. To apply migrations and create super user**
 

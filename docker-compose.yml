@@ -28,3 +28,14 @@ services:
     env_file: deploy/backend/variables.env
     ports:
     - 8080:8080
+
+  test:
+    build:
+      context: .
+      dockerfile: deploy/backend/Dockerfile-dev
+    depends_on:
+      - db
+    command: pytest --create-db
+    ports:
+      - 8080:8080
+    env_file: deploy/backend/variables.env

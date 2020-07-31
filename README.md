@@ -14,16 +14,20 @@ docker-compose up django db
 
 docker-compose up -d django db
 
-**2.c launch container with tests**
-
-docker-compose run test
-
 **3. To apply migrations and create super user**
 
 - docker-compose exec django bash
 - ./manage.py migrate
 - ./manage.py createsuperuser
 
-**4. Documentation for API app**
+#
+To run the container with tests
+-
+
+docker-compose run test
+
+#
+Documentation for API app
+-
 
 http://0.0.0.0:8080/swagger/

@@ -14,15 +14,15 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     postgresql-client
 
-RUN mkdir /code
-WORKDIR /code
-ADD requirements.txt /code/
-RUN pip3 install -r requirements.txt
-ADD . /code/
-
 RUN apt-get -y autoremove && apt-get autoclean && apt-get clean
 
 RUN rm -rf /usr/bin/python /usr/bin/python3 /usr/bin/pip && \
-    ln -sfn /usr/bin/python3.6 /usr/bin/python3 && \
-    ln -sfn /usr/bin/python3.6   /usr/bin/python && \
+    ln -sfn /usr/bin/python3.7 /usr/bin/python3 && \
+    ln -sfn /usr/bin/python3.7   /usr/bin/python && \
     ln -sfn /usr/bin/pip3      /usr/bin/pip
+
+RUN mkdir /code
+WORKDIR /code
+ADD requirements.txt /code/
+RUN pip install -r requirements.txt
+ADD . /code/
